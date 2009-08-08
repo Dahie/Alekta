@@ -1,0 +1,36 @@
+//general description
+
+%h1
+  = @mod.title
+
+%p
+  %strong
+    = @mod.short_description
+
+%p
+  = @mod.description
+  
+%p
+  = @mod.credits
+
+
+//display releases
+
+-unless @mod.releases.empty?
+  %ul
+  -for release in @mod.releases
+    %li
+      %strong
+        = release.title
+      %ul
+      -for mirror in release.mirrors
+        %li
+          = mirror.title
+        
+
+
+
+
+= link_to 'Edit', edit_mod_path(@mod)
+|
+= link_to 'Back', mods_path

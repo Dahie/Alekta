@@ -1,0 +1,12 @@
+<h1>Editing mirror</h1>
+
+<% form_for(@mirror) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @mirror %> |
+<%= link_to 'Back', mirrors_path %>
