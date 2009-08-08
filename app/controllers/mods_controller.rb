@@ -10,6 +10,10 @@ class ModsController < ApplicationController
     end
   end
 
+  def my
+    
+  end
+
   # GET /mods/1
   # GET /mods/1.xml
   def show

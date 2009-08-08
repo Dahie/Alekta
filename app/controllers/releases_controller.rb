@@ -1,8 +1,11 @@
 class ReleasesController < ApplicationController
+  
+  before_filter :get_mod, :only => [:index, :new, :edit, :destroy]
+  
   # GET /releases
   # GET /releases.xml
   def index
-    @releases = Release.find(:all)
+    @releases = @mod.releases.find(:all)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +16,7 @@ class ReleasesController < ApplicationController
   # GET /releases/1
   # GET /releases/1.xml
   def show
-    @release = Release.find(params[:id])
+    @release = @mod.releases.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +27,7 @@ class ReleasesController < ApplicationController
   # GET /releases/new
   # GET /releases/new.xml
   def new
-    @release = Release.new
+    @release = @mod.releases.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,7 +43,7 @@ class ReleasesController < ApplicationController
   # POST /releases
   # POST /releases.xml
   def create
-    @release = Release.new(params[:release])
+    @release = @mod.releases.new(params[:release])
 
     respond_to do |format|
       if @release.save
@@ -82,4 +85,11 @@ class ReleasesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  protected
+  
+  def get_mod
+    @mod = Mod.find(params[:mod_id])
+  end
+  
 end

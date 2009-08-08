@@ -1,0 +1,12 @@
+%p Fields with * are mandatory
+%fieldset{:title => "New Release"}
+  %legend Release details
+  %p
+    = f.label :title, "Titel"
+    = f.text_field :title
+  %p
+    = f.label :title, "Version"
+    = f.text_field :title
+  %p
+    = f.label :change_log, "Change log"
+    = f.text_area :change_log, :cols => 20, :rows => "5"

@@ -1,0 +1,9 @@
+%h1 New release
+
+-form_for ([@mod, @release]) do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:f => f}
+  %p
+    = f.submit "Create Release"
+
+= link_to 'Back', mod_releases_path(@mod)

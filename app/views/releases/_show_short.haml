@@ -4,3 +4,4 @@
   %ul
   -for mirror in release.mirrors
     = render :partial => 'releases/mirror', :locals => {:mirror => mirror}
+  = link_to "Add Mirror", new_mod_release_mirror_path(release.mod, release)

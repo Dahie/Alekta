@@ -1,0 +1,19 @@
+%h1 Listing releases
+
+%table
+  -for release in @releases
+    %tr
+      %td
+        = release.title
+      %td
+        = link_to 'Show', mod_release_path(@mod, release)
+      %td
+        = link_to 'Edit', edit_mod_release_path(@mod, release)
+      %td
+        = link_to 'Destroy', edit_mod_release_path(@mod, release), :confirm => 'Are you sure?', :method => :delete 
+
+%br
+
+= link_to 'New release', new_mod_release_path
+|
+= link_to 'Go to mod', mod_path(@mod)

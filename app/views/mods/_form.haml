@@ -1,0 +1,18 @@
+%p Fields with * are mandatory
+%fieldset{:title => "New Release"}
+  %legend Release details
+  %p
+    = f.label :title, "Titel"
+    = f.text_field :title
+  %p
+    = f.label :website_url, "Website URL"
+    = f.text_field :website_url
+  %p
+    = f.label :short_description, "Short Description"
+    = f.text_area :short_description, :cols => 20, :rows => "5", :maxlength => 200
+  %p
+    = f.label :description, "Description"
+    = f.text_area :description, :cols => 20, :rows => "15"
+  %p
+    = f.label :credits, "Credits"
+    = f.text_area :credits, :cols => 20, :rows => "15"

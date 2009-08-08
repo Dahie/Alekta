@@ -1,30 +1,12 @@
 class MirrorsController < ApplicationController
-  # GET /mirrors
-  # GET /mirrors.xml
-  def index
-    @mirrors = Mirror.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @mirrors }
-    end
-  end
-
-  # GET /mirrors/1
-  # GET /mirrors/1.xml
-  def show
-    @mirror = Mirror.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @mirror }
-    end
-  end
+  
+  before_filter :get_mod, :only => [:new, :update, :edit, :destroy]
+  before_filter :get_release, :only => [:new, :update, :edit, :destroy]
 
   # GET /mirrors/new
   # GET /mirrors/new.xml
   def new
-    @mirror = Mirror.new
+    @mirror = @mod.releases.mirrors.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,8 +22,9 @@ class MirrorsController < ApplicationController
   # POST /mirrors
   # POST /mirrors.xml
   def create
-    @mirror = Mirror.new(params[:mirror])
-
+    
+    @mirror  = Mirror.new(params[:mirror])
+    
     respond_to do |format|
       if @mirror.save
         flash[:notice] = 'Mirror was successfully created.'
@@ -82,4 +65,16 @@ class MirrorsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  
+  protected
+  
+  def get_mod
+    @mods = Mod.find(params[:mod_id])
+  end
+  
+  def get_release
+    @release = Release.find(params[:release_id])
+  end
+  
 end
