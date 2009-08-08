@@ -1,4 +1,4 @@
-class CreateRevews < ActiveRecord::Migration
+class CreateReviews < ActiveRecord::Migration
   def self.up
     create_table :reviews do |t|
       t.belongs_to :mod,                   :null => false

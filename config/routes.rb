@@ -1,4 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :user_sessions
+
+  map.resources :medias
+
+  map.resources :comments
+
+  map.resources :mirrors
+
   map.resources :users
 
   map.resources :teams

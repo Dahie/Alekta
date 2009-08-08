@@ -1,7 +1,6 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table :users do |t|
-      t.belongs_to   :organisation,                                                :null => false
       t.string       :nick_name,                                    :limit => 100, :null => false
       t.string       :real_name,                                    :limit => 100, :null => false
       t.string       :gender,                :default => "unknown", :limit => 15,  :null => false # unknown, male, female
@@ -20,8 +19,6 @@ class CreateUsers < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :users, :faculty_id
-    add_index :users, :position_id
     add_index :users, :email
   end
   

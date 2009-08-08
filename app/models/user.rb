@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   validates_length_of           :real_name,                 :within => 1..100
   validates_presence_of         :nick_name
   validates_length_of           :nick_name,                 :within => 1..100
-  validates_uniqueness_of       :nickname,                  :case_sensitive => false
+  validates_uniqueness_of       :nick_name,                  :case_sensitive => false
   validates_inclusion_of        :gender,                    :in => [:unknown, :male, :female]
   validates_presence_of         :email
   validates_length_of           :email,                     :within => 6..100

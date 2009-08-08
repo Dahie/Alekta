@@ -1,7 +1,6 @@
 class CreateReleases < ActiveRecord::Migration
   def self.up
     create_table :releases do |t|
-      t.belongs_to  :game,                             :null => false
       t.belongs_to  :mod,                              :null => false
       t.belongs_to  :user,                             :null => false
       t.string      :title,                            :limit => 100,    :null => false
@@ -13,7 +12,6 @@ class CreateReleases < ActiveRecord::Migration
       #TODO scheduled releases
     end
     
-    add_index :releases, :game_id
     add_index :releases, :mod_id
     add_index :releases, :user_id
   end

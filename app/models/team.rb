@@ -9,6 +9,8 @@ class Team < ActiveRecord::Base
 
   # belongs_to associations
 
+  belongs_to :user
+
   # has_many associations
   has_many :mods
   has_many :memberships, :dependent => :destroy
@@ -23,6 +25,9 @@ class Team < ActiveRecord::Base
   symbolize :status
   
   # validations
+  
+  validates_existence_of  :user,          :allow_nil => false
+  
   validates_presence_of   :name
   validates_length_of     :name,          :within => 1..255,     :allow_blank => false
   validates_presence_of   :description
