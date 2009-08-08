@@ -1,0 +1,12 @@
+%h1 Editing mod
+
+-form_for(@mod) do |f|
+  %fieldset
+    = f.error_messages
+  
+    %p>
+      = f.submit "Update"
+
+= link_to 'Show', @mod
+|
+= link_to 'Back', mods_path

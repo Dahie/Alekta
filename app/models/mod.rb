@@ -19,7 +19,7 @@ class Mod < ActiveRecord::Base
   has_many :releases
   has_many :derivates, :class_name => "Mod", :foreign_key => "original_id"
   has_many :authorships, :dependent => :destroy
-  has_many :authors, :through => :authorships
+  has_many :authors, :through => :authorships, :source => :team
   
   # has_one associations
   

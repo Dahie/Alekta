@@ -15,6 +15,7 @@ class Team < ActiveRecord::Base
   has_many :mods
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
+  has_many :authorships
 
   # has_one associations
 

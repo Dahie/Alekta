@@ -61,6 +61,17 @@ namespace :import do
       end
     end
     
+    
+    desc "Generate Authorship"
+    task :authorships => :environment do
+      puts "********** TEAM **********"
+      
+      authorship = Authorship.new
+      authorship.team = Team.first
+      authorship.mod = Mod.first
+      authorship.save!
+    end
+    
     desc "Generate Releases"
     task :releases => :environment do
       puts "********** RELEASES **********"
@@ -91,6 +102,6 @@ namespace :import do
     end
     
     desc "Generates All"
-    task :all => [:users, :game, :teams, :mods, :releases, :mirrors]
+    task :all => [:users, :game, :teams, :mods, :authorships, :releases, :mirrors]
   end
 end

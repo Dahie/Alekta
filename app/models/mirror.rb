@@ -28,6 +28,8 @@ class Mirror < ActiveRecord::Base
   validates_presence_of       :status
   validates_inclusion_of      :status,        :in => [:private, :public]
   
+  validates_presence_of       :clicks
+  
   validates_presence_of       :title
   validates_length_of         :title,         :within => 1..100
   
@@ -35,7 +37,7 @@ class Mirror < ActiveRecord::Base
   validates_length_of         :download_url,  :within => 1..100
   
   # attr_accessible
-  attr_accessible :status, :download_url, :title
+  attr_accessible :status, :download_url, :title, :clicks
   
   # before callbacks
   

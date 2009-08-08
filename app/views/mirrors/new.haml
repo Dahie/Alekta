@@ -1,0 +1,18 @@
+%h1>New mirror
+
+-form_for(@mirror) do |f| %>
+%fieldset{:title => "Mirror"}
+  %legend Mirror
+  = f.error_messages %>
+  %p
+    = f.label :title, "Title"
+    = f.text_field :title
+  %p
+    = f.label :download_url, "Download URL"
+    = f.text_field :download_url
+  
+
+  %p
+    = f.submit "Create" %>
+
+= link_to 'Back', mirrors_path

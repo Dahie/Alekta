@@ -4,6 +4,13 @@
   = @mod.title
 
 %p
+  -for team in @mod.authors
+    = team.name
+
+%p
+  = link_to "Website", @mod.website_url
+
+%p
   %strong
     = @mod.short_description
 
@@ -19,17 +26,11 @@
 -unless @mod.releases.empty?
   %ul
   -for release in @mod.releases
-    %li
-      %strong
-        = release.title
-      %ul
-      -for mirror in release.mirrors
-        %li
-          = mirror.title
+    = render :partial => 'releases/show_short', :locals => {:release => release}
+-else
+  %p
+    There were no releases of this mod so far.
         
-
-
-
 
 = link_to 'Edit', edit_mod_path(@mod)
 |

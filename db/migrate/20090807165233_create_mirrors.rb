@@ -4,6 +4,7 @@ class CreateMirrors < ActiveRecord::Migration
       t.belongs_to  :user,                             :null => false
       t.belongs_to  :release,                             :null => false
       t.string      :title,                            :limit => 100,    :null => false
+      t.integer     :clicks,                           :limit => 100,    :null => false
       t.string      :download_url,                     :limit => 100,    :null => false
       t.string      :status,       :default => "public",     :limit => 15,     :null => false  # public, private
       t.string      :attachment_file_name

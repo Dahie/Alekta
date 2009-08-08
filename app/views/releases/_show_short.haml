@@ -1,0 +1,6 @@
+%li
+  %strong
+    = release.title
+  %ul
+  -for mirror in release.mirrors
+    = render :partial => 'releases/mirror', :locals => {:mirror => mirror}
