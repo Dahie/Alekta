@@ -4,24 +4,34 @@
   = @mod.title
 
 %p
+  Author:
   -for team in @mod.authors
-    = team.name
+    = link_to team.name, team_path(team)
 
 %p
   = link_to "Website", @mod.website_url
+  
+%p
+  Game: 
+  //= link_to @mod.game.name, @mod.game.website_url
+  =link_to @mod.game.name, game_path(@mod.game)
 
 %p
   %strong
     = @mod.short_description
 
 %p
+  Description: 
   = @mod.description
   
 %p
+  Credits: 
   = @mod.credits
 
 
 //display releases
+%h2
+  Releases
 
 -unless @mod.releases.empty?
   %ul

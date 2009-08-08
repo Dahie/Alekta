@@ -1,6 +1,6 @@
 %h1 New mod
 
--form_for(@mod) do |f|
+-form_for @mod, :url => mod_path(@proposal) do |f|
   = f.error_messages
   = render :partial => 'form', :locals => {:f => f}
   %p

@@ -1,0 +1,22 @@
+%h1
+  Team:
+  =@team.name
+ 
+%p
+  =link_to "Website", @team.website_url
+%p
+  Introduction:
+  =@team.description
+  
+  
+%h2
+  Mods:
+%ul
+  -for mod in @team.mods
+    %li
+      =link_to mod.title, mod_path(mod)
+
+
+= link_to 'Edit', edit_team_path(@team)
+|
+= link_to 'Show all teams', teams_path

@@ -1,0 +1,11 @@
+%h1 Listing games
+
+%table
+
+-for game in @games 
+  = render :partial => 'list', :locals => {:game => game}
+  
+
+%br
+
+= link_to 'New game', new_game_path 

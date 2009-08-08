@@ -12,10 +12,11 @@ class Team < ActiveRecord::Base
   belongs_to :user
 
   # has_many associations
-  has_many :mods
+
   has_many :memberships, :dependent => :destroy
   has_many :users, :through => :memberships
   has_many :authorships
+  has_many :mods, :through => :authorships
 
   # has_one associations
 

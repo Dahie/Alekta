@@ -1,0 +1,20 @@
+%h1
+  =@game.name
+  
+%p
+  = link_to "Website", @game.website_url
+  
+%h2
+  Mods for this game
+  
+%table
+  -for mod in @game.mods
+    %tr
+      %td
+        = link_to mod.title, mod_path(mod)
+      %td
+        =mod.short_description
+
+= link_to 'Edit', edit_game_path(@game)
+|
+= link_to 'Back', games_path

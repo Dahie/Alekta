@@ -5,14 +5,14 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :teams
   
-  map.resources :mods, :collection => {:my => :get}, :only => [ :index, :new, :create, :my, :show, :destroy, :edit] do |mod|
+  map.resources :mods, :collection => {:my => :get}, :only => [ :index, :new, :create, :delete, :update, :my, :show, :destroy, :edit] do |mod|
     #mod.resources :releases, :only => [:new, :create, :edit, :destroy] do |release|
     #  release.resources :mirrors, :only => [:new, :create, :edit, :destroy]
     #end
     mod.resources :releases, :has_many => [ :mirrors]
   end
 
-  map.resources :games
+  map.resources :games, :only => [:new, :index, :create, :show, :update, :edit, :destroy]
   
   map.login  "login",  :controller => "frontend/user_sessions", :action => "new"
   map.logout "logout", :controller => "frontend/user_sessions", :action => "destroy"
