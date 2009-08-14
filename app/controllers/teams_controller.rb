@@ -1,28 +1,16 @@
 class TeamsController < ApplicationController
-  # GET /teams
-  # GET /teams.xml
+
+  before_filter :require_backend_user, :only => [:new, :create, :edit, :destroy, :update]
+  before_filter :permission_required, :only => [:new, :create, :edit, :destroy, :update]
+
   def index
     @teams = Team.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @teams }
-    end
   end
 
-  # GET /teams/1
-  # GET /teams/1.xml
   def show
     @team = Team.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @team }
-    end
   end
 
-  # GET /teams/new
-  # GET /teams/new.xml
   def new
     @team = Team.new
 
@@ -32,30 +20,22 @@ class TeamsController < ApplicationController
     end
   end
 
-  # GET /teams/1/edit
   def edit
     @team = Team.find(params[:id])
   end
 
-  # POST /teams
-  # POST /teams.xml
   def create
     @team = Team.new(params[:team])
+    @team.user = current_user
 
-    respond_to do |format|
-      if @team.save
-        flash[:notice] = 'Team was successfully created.'
-        format.html { redirect_to(@team) }
-        format.xml  { render :xml => @team, :status => :created, :location => @team }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @team.errors, :status => :unprocessable_entity }
-      end
+    if @team.save
+      flash[:notice] = 'Team was successfully created.'
+      redirect_to(@team) 
+    else
+       render :action => "new" 
     end
   end
 
-  # PUT /teams/1
-  # PUT /teams/1.xml
   def update
     @team = Team.find(params[:id])
 

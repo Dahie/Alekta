@@ -1,0 +1,15 @@
+%p Fields with * are mandatory.
+%fieldset{:title => "New User"}
+  %legend User details
+  %p{:class => 'required'} 
+    = f.label :name, "Team name"
+    = f.text_field :name
+  %p{:class => 'required'}
+    = f.label :email, "e-Mail"
+    = f.text_field :email
+  %p{:class => 'required'}
+    = f.label :description, "Description"
+    = f.text_area :description
+  %p
+    = f.label :website_url, "Website URL"
+    = f.text_field :website_url

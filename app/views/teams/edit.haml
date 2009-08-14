@@ -1,12 +1,11 @@
-<h1>Editing team</h1>
+%h1 Editing team
 
-<% form_for(@team) do |f| %>
-  <%= f.error_messages %>
+-form_for(@team) do |f|
+  = f.error_messages 
+  = render :partial => 'form', :locals => {:f => f}
+  %p
+    = f.submit "Update" 
 
-  <p>
-    <%= f.submit "Update" %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+= link_to 'Show', @team
+|
+= link_to 'List all Teams', teams_path 
