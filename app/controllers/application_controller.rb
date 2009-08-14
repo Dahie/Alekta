@@ -14,9 +14,10 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
   
    
-  protect_from_forgery
   filter_parameter_logging :password, :password_confirmation
   helper_method :current_user_session, :current_user, :current_organisation, :action_is?
+  
+  layout 'layout'
   
   private
   
@@ -36,6 +37,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_locale
   
+  def current_content_type
+    "text/html"
+  end
+  helper_method :current_content_type
+  
   def require_user
    unless current_user
      store_location
@@ -45,20 +51,34 @@ class ApplicationController < ActionController::Base
    end
   end
   
-  
-  def require_admin
-    unless current_user.is_admin?
-      redirect_to manage_path
+   def require_modder
+    unless current_user.is_modder?
+      redirect_to welcome_path
     end
   end
   
+  def require_admin
+    unless current_user.is_admin?
+      redirect_to welcome_path
+    end
+  end
+  
+  def require_backend_user
+   unless current_user
+     store_location
+     flash[:notice] = "You must be logged in to access this page"
+     redirect_to new_user_session_path
+     return false
+   end
+  end
+  
   def permission_required
-    (is_admin? || is_editor? || is_expert? || is_observer?) ? true : permission_denied
+    (is_admin? || is_modder? || is_expert? || is_observer?) ? true : permission_denied
   end
   
   def permission_denied
     flash[:error] = "Sie haben nicht die notwendigen Rechte um diese Seite anzuschauen."
-    redirect_to manage_login_path
+    redirect_to login_path
   end
 
   def store_location

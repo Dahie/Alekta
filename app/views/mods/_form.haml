@@ -1,5 +1,5 @@
 %p Fields with * are mandatory
-%fieldset{:title => "New Release"}
+%fieldset{:title => "New Mod"}
   %legend Release details
   %p
     = f.label :title, "Titel"
@@ -16,3 +16,16 @@
   %p
     = f.label :credits, "Credits"
     = f.text_area :credits, :cols => 20, :rows => "15"
+    
+%fieldset{:title => "Relations"}
+  %legend Relations
+  %p
+    = f.label :topic, "Kategorie"
+    //= f.select :topic_id, topics_for_select, { :include_blank => true }
+  %p
+    = f.label :game, "Game"
+    = f.select :game_id, games_for_select, { :include_blank => false }
+  -if current_user.is_admin?
+    %p
+    = f.label :team, "Team"
+    = f.select :team_id, teams_for_select, { :include_blank => false }

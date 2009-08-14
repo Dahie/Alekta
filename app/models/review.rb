@@ -26,7 +26,6 @@ class Review < ActiveRecord::Base
 	validates_length_of     :text,   :within => 0..10_000,   :allow_blank => true
 	
 	validates_existence_of  :user,  :allow_nil => false
-  validates_existence_of  :organisation,  :allow_nil => false
   
   # attr_accessible
   

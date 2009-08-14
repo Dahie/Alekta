@@ -1,0 +1,17 @@
+!!! XML
+!!! Strict
+%html{html_attrs(current_locale)}
+  %head
+    = render :partial => 'shared/html_header'
+    = render :partial => 'shared/css_includes'
+  %body
+    .main.gridlines
+      .clear
+        &nbsp;
+      //= render :partial => 'shared/header'
+      //= render :partial => 'shared/leftcol'
+      //= render :partial => 'shared/rightcol'
+      #ct-content.ml15.fluid.mr15
+        = yield
+      //= render :partial => 'shared/footer'
+      //= render :partial => 'shared/js_includes'

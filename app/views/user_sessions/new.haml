@@ -1,0 +1,15 @@
+%h1 Login
+
+%fieldset
+  %legend Anmelden
+  - form_for @user_session do |f|
+    = f.error_messages
+    = f.label :email
+    = f.text_field :email
+    %br
+    = f.label :password
+    = f.password_field :password
+    %br
+    = f.check_box :remember_me
+    = f.label 'Auf diesem Rechner eingeloggt bleiben'
+    = f.submit "Anmelden"

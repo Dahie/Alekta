@@ -1,0 +1,12 @@
+%p Fields with * are mandatory
+%fieldset{:title => "New Game"}
+  %legend Game details
+  %p
+    = f.label :name, "Name"
+    = f.text_field :name
+  %p
+    = f.label :website_url, "Website URL"
+    = f.text_field :website_url
+  %p
+    = f.label :alias, "URL-Alias"
+    = f.text_field :alias

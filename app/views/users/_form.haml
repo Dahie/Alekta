@@ -1,0 +1,23 @@
+%p All fields are mandatory
+%fieldset{:title => "New User"}
+  %legend User details
+  %p
+    = f.label :email, "e-Mail"
+    = f.text_field :email
+  %p
+    = f.label :nick_name, "Nick name"
+    = f.text_field :nick_name
+  %p
+    = f.label :real_name, "Real name"
+    = f.text_field :real_name
+      
+  %p
+    = f.label :password, f.object.new_record? ? nil : "Change password"
+    = f.password_field :password
+  %p
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation 
+    
+  %p
+    = f.label :role, "Benutzerrolle"
+    = f.select :role, roles_for_select

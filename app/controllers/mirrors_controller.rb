@@ -1,39 +1,27 @@
 class MirrorsController < ApplicationController
   
-  before_filter :get_mod, :only => [:new, :update, :edit, :destroy]
-  before_filter :get_release, :only => [:new, :update, :edit, :destroy]
+  before_filter :require_backend_user, :only => [:new, :edit, :destroy, :update]
+  before_filter :permission_required, :only => [:new, :edit, :destroy, :update]
+  
+  before_filter :get_mod, :only => [:new, :update, :edit, :create, :destroy]
+  before_filter :get_release, :only => [:new, :update, :edit, :create, :destroy]
 
-  # GET /mirrors/new
-  # GET /mirrors/new.xml
   def new
     @mirror = @mod.releases.mirrors.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @mirror }
-    end
   end
 
-  # GET /mirrors/1/edit
   def edit
     @mirror = Mirror.find(params[:id])
   end
 
-  # POST /mirrors
-  # POST /mirrors.xml
   def create
-    
     @mirror  = Mirror.new(params[:mirror])
     
-    respond_to do |format|
-      if @mirror.save
-        flash[:notice] = 'Mirror was successfully created.'
-        format.html { redirect_to(@mirror) }
-        format.xml  { render :xml => @mirror, :status => :created, :location => @mirror }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @mirror.errors, :status => :unprocessable_entity }
-      end
+    if @mirror.save
+      flash[:notice] = 'Mirror was successfully created.'
+      redirect_to mod_release_mirrors(@mod, @release)
+    else
+      render :action => "new"
     end
   end
 
@@ -70,7 +58,7 @@ class MirrorsController < ApplicationController
   protected
   
   def get_mod
-    @mods = Mod.find(params[:mod_id])
+    @mod = Mod.find(params[:mod_id])
   end
   
   def get_release

@@ -1,6 +1,9 @@
 class ModsController < ApplicationController
-  # GET /mods
-  # GET /mods.xml
+  
+  before_filter :require_backend_user, :only => [:new, :edit, :destroy, :update]
+  before_filter :permission_required, :only => [:new, :edit, :destroy, :update]
+  
+  
   def index
     @mods = Mod.find(:all)
 
@@ -14,19 +17,10 @@ class ModsController < ApplicationController
     
   end
 
-  # GET /mods/1
-  # GET /mods/1.xml
   def show
     @mod = Mod.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @mod }
-    end
   end
 
-  # GET /mods/new
-  # GET /mods/new.xml
   def new
     @mod = Mod.new
 
@@ -36,13 +30,10 @@ class ModsController < ApplicationController
     end
   end
 
-  # GET /mods/1/edit
   def edit
     @mod = Mod.find(params[:id])
   end
 
-  # POST /mods
-  # POST /mods.xml
   def create
     @mod = Mod.new(params[:mod])
 

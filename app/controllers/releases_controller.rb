@@ -1,9 +1,10 @@
 class ReleasesController < ApplicationController
   
-  before_filter :get_mod, :only => [:index, :new, :edit, :destroy]
+  before_filter :require_backend_user, :only => [:new, :edit, :destroy, :update]
+  before_filter :permission_required, :only => [:new, :edit, :destroy, :update]
   
-  # GET /releases
-  # GET /releases.xml
+  before_filter :get_mod, :only => [:index, :new, :create, :update, :edit, :destroy]
+  
   def index
     @releases = @mod.releases.find(:all)
 
@@ -13,8 +14,6 @@ class ReleasesController < ApplicationController
     end
   end
 
-  # GET /releases/1
-  # GET /releases/1.xml
   def show
     @release = @mod.releases.find(params[:id])
 
@@ -24,8 +23,6 @@ class ReleasesController < ApplicationController
     end
   end
 
-  # GET /releases/new
-  # GET /releases/new.xml
   def new
     @release = @mod.releases.new
 
@@ -35,30 +32,22 @@ class ReleasesController < ApplicationController
     end
   end
 
-  # GET /releases/1/edit
   def edit
     @release = Release.find(params[:id])
   end
 
-  # POST /releases
-  # POST /releases.xml
   def create
     @release = @mod.releases.new(params[:release])
+    @release.user = current_user
 
-    respond_to do |format|
-      if @release.save
-        flash[:notice] = 'Release was successfully created.'
-        format.html { redirect_to(@release) }
-        format.xml  { render :xml => @release, :status => :created, :location => @release }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @release.errors, :status => :unprocessable_entity }
-      end
+    if @release.save
+      flash[:notice] = 'Release was successfully created.'
+      redirect_to mod_releases_path(@mod)
+    else
+       render :action => "new"
     end
   end
 
-  # PUT /releases/1
-  # PUT /releases/1.xml
   def update
     @release = Release.find(params[:id])
 
@@ -74,14 +63,12 @@ class ReleasesController < ApplicationController
     end
   end
 
-  # DELETE /releases/1
-  # DELETE /releases/1.xml
   def destroy
     @release = Release.find(params[:id])
     @release.destroy
 
     respond_to do |format|
-      format.html { redirect_to(releases_url) }
+      format.html { redirect_to mod_releases_path }
       format.xml  { head :ok }
     end
   end

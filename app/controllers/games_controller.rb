@@ -1,6 +1,8 @@
 class GamesController < ApplicationController
-  # GET /games
-  # GET /games.xml
+  
+  before_filter :require_admin, :only => [:new, :edit, :destroy, :update]
+  before_filter :permission_required, :only => [:new, :edit, :destroy, :update]
+  
   def index
     @games = Game.find(:all)
 
@@ -10,8 +12,6 @@ class GamesController < ApplicationController
     end
   end
 
-  # GET /games/1
-  # GET /games/1.xml
   def show
     @game = Game.find(params[:id])
 
@@ -21,26 +21,19 @@ class GamesController < ApplicationController
     end
   end
 
-  # GET /games/new
-  # GET /games/new.xml
   def new
     @game = Game.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @game }
-    end
+    format.html # new.html.erb
   end
 
-  # GET /games/1/edit
   def edit
     @game = Game.find(params[:id])
   end
 
-  # POST /games
-  # POST /games.xml
   def create
     @game = Game.new(params[:game])
+    @game.user = current_user
 
     respond_to do |format|
       if @game.save

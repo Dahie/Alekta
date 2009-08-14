@@ -97,6 +97,7 @@ namespace :import do
         mirror.title = "Mirror #{count}"
         mirror.download_url = "http://download.example.com/#{count}"
         mirror.status = :public
+        mirror.clicks = 0
         mirror.save!
       end
     end

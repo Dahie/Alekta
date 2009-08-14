@@ -9,13 +9,13 @@ ActionController::Routing::Routes.draw do |map|
     #mod.resources :releases, :only => [:new, :create, :edit, :destroy] do |release|
     #  release.resources :mirrors, :only => [:new, :create, :edit, :destroy]
     #end
-    mod.resources :releases, :has_many => [ :mirrors]
+    mod.resources :releases, :has_many => [ :mirrors], :only => [ :index, :new, :create, :delete, :update, :show, :destroy, :edit]
   end
 
   map.resources :games, :only => [:new, :index, :create, :show, :update, :edit, :destroy]
   
-  map.login  "login",  :controller => "frontend/user_sessions", :action => "new"
-  map.logout "logout", :controller => "frontend/user_sessions", :action => "destroy"
+  map.login  "login",  :controller => "user_sessions", :action => "new"
+  map.logout "logout", :controller => "user_sessions", :action => "destroy"
   map.root :controller => "welcome"
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,9 +1,8 @@
 %h1 Listing games
 
 %table
-
--for game in @games 
-  = render :partial => 'list', :locals => {:game => game}
+  -for game in @games 
+    = render :partial => 'list', :locals => {:game => game}
   
 
 %br

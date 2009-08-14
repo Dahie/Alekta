@@ -7,7 +7,6 @@ class Mod < ActiveRecord::Base
   
   # belongs_to associations
   belongs_to :original, :class_name => "Mod", :foreign_key => "original_id"
-  belongs_to :user
   belongs_to :team
   belongs_to :game
   #belongs_to :category
@@ -34,7 +33,6 @@ class Mod < ActiveRecord::Base
   # validations
   validates_existence_of      :game,          :allow_nil => false
   validates_presence_of       :original,      :if => :is_derivate? # TODO
-  validates_existence_of      :user,          :allow_nil => false
   validates_existence_of      :team,          :allow_nil => false
   
   validates_presence_of       :status
