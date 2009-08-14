@@ -11,6 +11,11 @@
       //= render :partial => 'shared/header'
       //= render :partial => 'shared/leftcol'
       //= render :partial => 'shared/rightcol'
+      
+      = link_to 'List all Mods', mods_path
+      = link_to 'List all Games', games_path
+      = link_to 'List all Users', users_path
+      = link_to 'List all Teams', teams_path
       #ct-content.ml15.fluid.mr15
         = yield
       //= render :partial => 'shared/footer'

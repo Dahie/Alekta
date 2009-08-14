@@ -27,5 +27,5 @@
     = f.select :game_id, games_for_select, { :include_blank => false }
   -if current_user.is_admin?
     %p
-    = f.label :team, "Team"
-    = f.select :team_id, teams_for_select, { :include_blank => false }
+      = f.label :team, "Team"
+      = f.select :team_id, teams_for_select, { :include_blank => false }

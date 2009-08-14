@@ -54,7 +54,7 @@ class Mod < ActiveRecord::Base
   validates_length_of         :credits,       :within => 1..10_000
   
   # attr_accessible
-  attr_accessible :status, :game, :description, :short_description, :credits, :title, :website_url
+  attr_accessible :status, :game, :description, :short_description, :credits, :title, :website_url, :team_id
   
   # before callbacks
   
