@@ -1,7 +1,7 @@
 class ReleasesController < ApplicationController
   
-  before_filter :require_backend_user, :only => [:new, :edit, :destroy, :update]
-  before_filter :permission_required, :only => [:new, :edit, :destroy, :update]
+  before_filter :require_backend_user, :only => [:new, :edit, :create, :destroy, :update]
+  before_filter :permission_required, :only => [:new, :edit, :create, :destroy, :update]
   
   before_filter :get_mod, :only => [:index, :new, :create, :update, :edit, :destroy]
   
