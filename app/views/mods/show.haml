@@ -3,17 +3,25 @@
 %h1
   = @mod.title
 
+-if @mod.is_derivate?
+  %p
+    Mod is derivate of previous mod called
+    = @mod.original.title
+
 %p
   Author:
-  -for team in @mod.authors
-    = link_to team.name, team_path(team)
+  = link_to @mod.team.name, team_path(@mod.team)
+-unless @mod.authors.empty?
+  %p
+    Co-authors:
+    -for team in @mod.authors
+      = link_to team.name, team_path(team)
 
 %p
   = link_to "Website", @mod.website_url
   
 %p
   Game: 
-  //= link_to @mod.game.name, @mod.game.website_url
   =link_to @mod.game.name, game_path(@mod.game)
 
 %p
@@ -41,8 +49,18 @@
   %p
     There were no releases of this mod so far.
 = link_to "Create Release", new_mod_release_path(@mod)
+       
+       
+// display derivates
+-if @mod.has_derivates?
+  %h2
+    Derivates 
+  %ul
+  -for derivate in @mod.derivates
+    = derivate.title
         
-
-= link_to 'Edit', edit_mod_path(@mod)
-|
-= link_to 'Back', mods_path
+        
+%p
+  = link_to 'Edit', edit_mod_path(@mod)
+  |
+  = link_to 'Back', mods_path

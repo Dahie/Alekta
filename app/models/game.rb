@@ -21,8 +21,6 @@ class Game < ActiveRecord::Base
   
   # plugins/config
   
-  symbolize :template_name, :layout_name, :style_name
-  
   # validations
   
   validates_existence_of  :user
@@ -30,6 +28,10 @@ class Game < ActiveRecord::Base
   validates_presence_of   :name
   validates_length_of     :name,     :within => 1..100
   validates_uniqueness_of :name,     :case_sensitive => false
+  
+  validates_presence_of   :company_name
+  validates_length_of     :company_name,     :within => 1..100
+  validates_uniqueness_of :company_name,     :case_sensitive => false
   
   validates_presence_of   :alias
   validates_length_of     :alias,     :within => 1..100
@@ -42,7 +44,7 @@ class Game < ActiveRecord::Base
   
   # attr_accessible
   
-  attr_accessible :name, :website_url, :alias
+  attr_accessible :name, :website_url, :alias, :company_name
   
   # before callbacks
   

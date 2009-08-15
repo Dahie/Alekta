@@ -7,13 +7,17 @@
 %h2
   Mods for this game
   
-%table
-  -for mod in @game.mods
-    %tr
-      %td
-        = link_to mod.title, mod_path(mod)
-      %td
-        =mod.short_description
+-unless @game.mods.empty?
+  %table
+    -for mod in @game.mods
+      %tr
+        %td
+          = link_to mod.title, mod_path(mod)
+        %td
+          =mod.short_description
+-else
+  %p
+    So far no mods have been registered for this game.
 
 = link_to 'Edit', edit_game_path(@game)
 |

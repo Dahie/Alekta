@@ -47,9 +47,10 @@ ActiveRecord::Schema.define(:version => 20090808071314) do
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "games", :force => true do |t|
-    t.string   "name",        :limit => 100, :null => false
-    t.string   "alias",       :limit => 100, :null => false
-    t.string   "website_url", :limit => 100, :null => false
+    t.string   "name",         :limit => 100, :null => false
+    t.string   "alias",        :limit => 100, :null => false
+    t.string   "company_name", :limit => 100, :null => false
+    t.string   "website_url",  :limit => 100, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(:version => 20090808071314) do
     t.integer  "user_id",                                                      :null => false
     t.integer  "release_id",                                                   :null => false
     t.string   "title",                   :limit => 100,                       :null => false
+    t.integer  "clicks",                  :limit => 100,                       :null => false
     t.string   "download_url",            :limit => 100,                       :null => false
     t.string   "status",                  :limit => 15,  :default => "public", :null => false
     t.string   "attachment_file_name"
@@ -85,6 +87,8 @@ ActiveRecord::Schema.define(:version => 20090808071314) do
 
   create_table "mods", :force => true do |t|
     t.integer  "game_id",                                                    :null => false
+    t.integer  "team_id",                                                    :null => false
+    t.integer  "original_id"
     t.string   "title",             :limit => 100,                           :null => false
     t.text     "short_description", :limit => 200,                           :null => false
     t.text     "description",       :limit => 10000,                         :null => false

@@ -16,6 +16,13 @@
       = link_to 'List all Games', games_path
       = link_to 'List all Users', users_path
       = link_to 'List all Teams', teams_path
+      -if current_user
+        = current_user.nick_name
+        = current_user.role
+        = link_to 'Logout', logout_path
+      -else
+        = link_to 'Login', login_path  
+      
       #ct-content.ml15.fluid.mr15
         = yield
       //= render :partial => 'shared/footer'

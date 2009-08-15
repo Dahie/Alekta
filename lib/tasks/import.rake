@@ -7,6 +7,7 @@ namespace :import do
       game = Game.new
       game.user = User.first
       game.name = "rFactor"
+      game.company_name = "Image Space Incorporated"
       game.alias = "rfactor"
       game.website_url = "http://rfactor.net"
       game.save!
@@ -17,15 +18,14 @@ namespace :import do
       puts "********** USERS **********"
       
       users_to_create = [
-        { :email => 'user@example.com',       :real_name => 'Sandra Schneidereit',      :nick_name => 'Musterfrau',    :gender => :female },
-        { :email => 'editor@example.com',       :real_name => 'Zaphod Beeblebrox',      :nick_name => 'Schneidereit',    :gender => :male },
+        { :email => 'user@example.com',       :real_name => 'Sandra Schneidereit',      :nick_name => 'Musterfrau',    :gender => :female, :role => :admin },
+        { :email => 'editor@example.com',       :real_name => 'Zaphod Beeblebrox',      :nick_name => 'Schneidereit',    :gender => :male, :role => :modder },
       ]
       
       users_to_create.each do |user_hash|
         user = User.new(user_hash)
         user.password = "testtest"
         user.password_confirmation = "testtest"
-        user.role = "modder"
         user.save!
       end
     end
@@ -49,7 +49,6 @@ namespace :import do
       21.times do |count|
         mod = Mod.new
         mod.game = Game.first
-        mod.user = User.first
         mod.team = Team.first
         mod.title = "F1-20#{count}"
         mod.short_description = "F1-20#{count} is the best mod released"

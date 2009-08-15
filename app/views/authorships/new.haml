@@ -1,0 +1,9 @@
+%h1 Add authorship
+
+-form_for @authorship, :url => mod_path(@mod) do |f|
+  = f.error_messages
+  = render :partial => 'form', :locals => {:f => f}
+  %p
+    = f.submit "Add author"
+
+= link_to 'Back', mod_path 

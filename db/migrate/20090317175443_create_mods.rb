@@ -2,6 +2,8 @@ class CreateMods < ActiveRecord::Migration
   def self.up
     create_table :mods do |t|
       t.belongs_to :game,                                           :null => false
+      t.belongs_to :team,                                           :null => false
+      t.belongs_to :original
       #t.belongs_to :genre,                                          :null => false
       t.string     :title,                                       :limit => 100,    :null => false
       t.text       :short_description,                                 :limit => 200, :null => false

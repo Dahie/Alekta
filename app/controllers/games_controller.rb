@@ -5,26 +5,14 @@ class GamesController < ApplicationController
   
   def index
     @games = Game.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @games }
-    end
   end
 
   def show
     @game = Game.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @game }
-    end
   end
 
   def new
     @game = Game.new
-
-    format.html # new.html.erb
   end
 
   def edit
