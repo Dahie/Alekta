@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   
-  before_filter :require_admin, :only => [:new, :edit, :destroy, :update]
-  before_filter :permission_required, :only => [:new, :edit, :destroy, :update]
+  before_filter :require_admin, :only => [:new, :edit,:create, :destroy, :update]
+  before_filter :permission_required, :only => [:new, :create, :edit, :destroy, :update]
   
   def index
     @games = Game.find(:all)
