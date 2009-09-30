@@ -6,4 +6,5 @@
 
 %br
 
-= link_to 'New team', new_team_path
+- if current_user
+  = link_to 'New team', new_team_path

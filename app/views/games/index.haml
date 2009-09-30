@@ -7,4 +7,5 @@
 
 %br
 
-= link_to 'New game', new_game_path 
+- if current_user
+  = link_to 'New game', new_game_path 

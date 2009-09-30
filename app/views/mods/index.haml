@@ -10,11 +10,13 @@
         = mod.short_description
       %td
         = link_to 'Show', mod
-      %td
-        = link_to 'Edit', edit_mod_path(mod) 
-      %td
-        = link_to 'Destroy', mod, :confirm => 'Are you sure?', :method => :delete
+      - if current_user
+        %td
+          = link_to 'Edit', edit_mod_path(mod) 
+        %td
+          = link_to 'Destroy', mod, :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New mod', new_mod_path 
+-if current_user
+  = link_to 'New mod', new_mod_path 

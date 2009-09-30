@@ -3,7 +3,8 @@
     =game.name
   %td
     = link_to 'Show', game
-  %td
-    = link_to 'Edit', edit_game_path(game)
-  %td
-    = link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete 
+  - if current_user
+    %td
+      = link_to 'Edit', edit_game_path(game)
+    %td
+      = link_to 'Destroy', game, :confirm => 'Are you sure?', :method => :delete 
